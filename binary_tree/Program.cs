@@ -4,7 +4,6 @@ namespace binary_tree
 {
     public class AVLTree<T>
     {
-        public Func<int, T, bool> func;
         private class Node
         {
             internal int key;
@@ -507,50 +506,30 @@ namespace binary_tree
     {
         static void Main(string[] args)
         {
-            // while (true)
-            // {
-            //     var tree = new AVLTree<string>();
-            //     Random rand = new Random();
-            //     for (int i = 0; i < 20; i++)
-            //         tree.Add(rand.Next(1, 30));
-            //     string entered = "";
-            //     while (true)
-            //     {
-            //         Console.Clear();
-            //         tree.Draw();
-            // 
-            //         Console.SetCursorPosition(0, 15);
-            //         Console.WriteLine("Press 0 for restart");
-            //         Console.WriteLine("Entered values: " + entered);
-            //         Console.Write("Enter the value: ");
-            //         int value = Convert.ToInt32(Console.ReadLine());
-            //         if (value == 0)
-            //             break;
-            //         entered += value.ToString() + " ";
-            //         tree.Erase(value);
-            //     }
-            // }
-            // AVLTree tree = new AVLTree();
-            // tree.Add(3);
-            // tree.Add(1);
-            // tree.Add(13);
-            // tree.Add(4);
-            // tree.Add(11);
-            // tree.Add(18);
-            // tree.Add(10);
-            // tree.Add(12);
-            //tree.Erase(3);
-            string[] values = { "andrew", "kisya", "kotik", "evgen", "wkola", "ryry", "kiol",
-            "sam", "slava", "baking", "brut", "truba", "lul", "poggers", "pog", "pogu",
-            "strong", "easy", "hard", "imp"};
-            var tree = new AVLTree<string>();
-            Random randkey = new Random();
-            for (int i = 0; i < 20; i++)
-                //tree.Add(randkey.Next(1, 30),values[i]);
-                tree.Add(i, values[i]);
-            Console.WriteLine(tree.At(2));
-            // tree.Draw();
-            Console.ReadLine();
+            while (true)
+            {
+                string[] values = { "andrew", "kisya", "kotik", "evgen", "wkola", "ryry", "kiol",
+                "sam", "slava", "baking", "brut", "truba", "lul", "poggers", "pog", "pogu",
+                "strong", "easy", "hard", "imp"};
+                var tree = new AVLTree<string>();
+                Random rand = new Random();
+                string entered = "";
+                while (true)
+                {
+                    Console.Clear();
+                    tree.Draw();
+
+                    Console.SetCursorPosition(0, 15);
+                    Console.WriteLine("Press 0 for restart");
+                    Console.WriteLine("Entered values: " + entered);
+                    Console.Write("Enter the value: ");
+                    int value = Convert.ToInt32(Console.ReadLine());
+                    if (value == 0)
+                        break;
+                    tree.Add(value, values[rand.Next(1,20)]);
+                    entered += value.ToString() + " - " + tree.At(value) + ", ";
+                }
+            }
         }
     }
 }
