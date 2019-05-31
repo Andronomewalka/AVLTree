@@ -2,21 +2,19 @@
 
 namespace AVLTree
 {
-    public class AVLTree<T>
+    public class AVLTree
     {
         private class Node
         {
             internal int key;
             internal int height;
-            internal T value;
             internal Node left;
             internal Node right;
             internal Node parent;
-            internal Node(int key, int height, Node left, Node right, Node parent, T value)
+            internal Node(int key, int height, Node left, Node right, Node parent)
             {
                 this.key = key;
                 this.height = height;
-                this.value = value;
                 this.left = left;
                 this.right = right;
                 this.parent = parent;
@@ -29,11 +27,11 @@ namespace AVLTree
             Count = 0;
         }
 
-        public bool Add(int key, T value) // возрващает истину, если вставка прошла успешно и ключ уникальный
+        public bool Add(int key) // возрващает истину, если вставка прошла успешно и ключ уникальный
         {
             if (Count == 0)
             {
-                root = new Node(key, 1, null, null, null, value);
+                root = new Node(key, 1, null, null, null);
             }
             else
             {
@@ -47,7 +45,7 @@ namespace AVLTree
                             iter = iter.left;
                         else
                         {
-                            current = new Node(key, 1, null, null, iter, value);
+                            current = new Node(key, 1, null, null, iter);
                             iter.left = current;
                         }
                     }
@@ -57,7 +55,7 @@ namespace AVLTree
                             iter = iter.right;
                         else
                         {
-                            current = new Node(key, 1, null, null, iter, value);
+                            current = new Node(key, 1, null, null, iter);
                             iter.right = current;
                         }
                     }
@@ -368,23 +366,23 @@ namespace AVLTree
             return true;
         }
 
-        public T At(int key)
-        {
-            Node current = root;
-            for (int i = 0; i < root.height; i++)
-            {
-                if (current == null)
-                    break;
-
-                else if (key < current.key)
-                    current = current.left;
-                else if (key > current.key)
-                    current = current.right;
-                else
-                    return current.value;
-            }
-            return default(T);
-        }
+        //public T At(int key)
+        //{
+        //    Node current = root;
+        //    for (int i = 0; i < root.height; i++)
+        //    {
+        //        if (current == null)
+        //            break;
+        //
+        //        else if (key < current.key)
+        //            current = current.left;
+        //        else if (key > current.key)
+        //            current = current.right;
+        //        else
+        //            return current.value;
+        //    }
+        //    return default(T);
+        //}
 
         public bool Exist(int key)
         {
